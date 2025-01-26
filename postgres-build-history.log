@@ -1,0 +1,20 @@
+ 1998  update-packages.sh 
+ 1999  mkdir git/github/postgres
+ 2000  cd git/github/postgres
+ 2001  git clone --recurse-submodules https://github.com/postgres/postgres.git
+ 2002  cd postgres/
+ 2003  make
+ 2004  ls
+ 2005  ./configure 
+ 2006  sudo apt search pkg-config
+ 2007  sudo apt install pkg-config 
+ 2008  ./configure 
+ 2009  sudo apt search bison
+ 2010  sudo apt install bison
+ 2011  ./configure 
+ 2012  sudo apt search flex
+ 2016  sudo apt install flex
+ 2017  ./configure 
+ 2018  make
+ 2019  cd contrib/
+ 2020  make

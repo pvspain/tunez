@@ -1,0 +1,21 @@
+ 1958  mise list
+ 1959  which mix
+ 1960  mix igniter.install ash
+ 1961  mix deps.get
+ 1962  mix igniter.install ash
+ 1963  mix igniter.install ash_postgres
+ 1964  mix archive.install hex igniter_new
+ 1965  mix igniter.install ash_postgres
+ 1966  npm install --prefix assets
+ 1967  npm audit fix
+ 1968  npm i --package-lock-only
+ 1969  npm install --prefix assets
+ 1970  npm audit fix
+ 1971  mix setup
+ 1972  history
+ 1973  history | grep -i mise
+ 1974  mise doctor
+ 1975  mise self-update
+ 1976  sudo mise self-update
+ 1977  history
+ 1978  history | tail -21 > ash-history.log
