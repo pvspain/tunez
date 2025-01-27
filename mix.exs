@@ -35,7 +35,7 @@ defmodule Tunez.MixProject do
     [
       {:ash_postgres, "~> 2.0"},
       {:ash, "~> 3.0"},
-      {:igniter, "~> 0.3"},
+      {:igniter, "~> 0.5", only: [:dev, :test]},
       {:phoenix, "~> 1.7.14"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
