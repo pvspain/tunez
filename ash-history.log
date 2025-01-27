@@ -19,3 +19,6 @@
  1976  sudo mise self-update
  1977  history
  1978  history | tail -21 > ash-history.log
+ 2026  sudo apt search inotify-tools
+ 2027  sudo apt install inotify-tools
+ 
