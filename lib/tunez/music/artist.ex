@@ -15,4 +15,11 @@ defmodule Tunez.Music.Artist do
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
+
+  actions do
+    create :create do
+      accept [:name, :biography]
+    end
+  end
+
 end
