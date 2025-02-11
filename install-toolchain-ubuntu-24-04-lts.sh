@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 shellrc=~/.bashrc
-mise_activate='eval "$(mise activate bash)"'
+mise_activate='eval "$(~/.local/bin/mise activate bash)"'
 completion_target=/etc/bash_completion.d/mise
 ## Ash-framework toolchain
 misetools="postgres erlang elixir node@lts"
