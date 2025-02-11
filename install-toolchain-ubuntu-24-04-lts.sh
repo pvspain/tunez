@@ -8,7 +8,7 @@ sudo apt install $packages
 
 # Uninstall prior mise installation
 # This will fail for virgin installation!
-mise --implode
+mise implode
 
 # Install mise
 gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 0x7413A06D
