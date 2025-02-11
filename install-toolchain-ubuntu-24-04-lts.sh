@@ -1,14 +1,20 @@
 #! /usr/bin/env bash
 
+shellrc=~/.bashrc
+mise_activate='eval "$(mise activate bash)"'
+completion_target=/etc/bash_completion.d/mise
+## Ash-framework toolchain
+misetools="postgres erlang elixir node@lts"
 # To use the devtool manager, mise, (mise-en-scene) to install erlang, elixir, postgresql, install the following packages:
-
 packages="autoconf bison erlang-odbc erlang-wx flex icu-devtools inotify-tools libicu-dev libncurses-dev libodbc2 libodbccr2 libodbcinst2 libreadline-dev libssl-dev libwxgtk-media3.2-dev  libwxgtk-webview3.2-dev libwxgtk3.2-dev odbcinst odbc-postgresql pkg-config unixodbc unixodbc-common unixodbc-dev"
 
 sudo apt install $packages
 
 # Uninstall prior mise installation
 # This will fail for virgin installation!
-mise implode --yes
+mise implode --config --yes
+# Remove any local ($PWD) mise config
+[ -f mise.toml ] && rm mise.toml
 
 # Install mise
 gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 0x7413A06D
@@ -17,23 +23,22 @@ curl https://mise.jdx.dev/install.sh.sig | gpg --decrypt > install.sh
 sh ./install.sh
 
 # Activate mise in each terminal session
-mise_activate='eval "$(mise activate bash)"'
-grep "$mise_activate" < ~/.bashrc > /dev/null || printf "\n# Activate mise in each terminal session\n$mise_activate\n" >> ~/.bashrc
+grep "$mise_activate" < $shellrc > /dev/null || printf "\n# Activate mise in each terminal session\n$mise_activate\n" >> $shellrc
 # Activate mise in current session
-source ~/.bashrc
+source $shellrc
 
 # Dump mise config and check for problems
-mise doctor
+mise doctor --yes
 
 # Add mise auto completion
 mise use -g usage
 # This requires bash-completion to be installed
-mkdir -p /etc/bash_completion.d/
-mise completion bash --include-bash-completion-lib > /etc/bash_completion.d/mise
-source ~/.bashrc
+sudo mkdir -p /etc/bash_completion.d/
+mise completion bash --include-bash-completion-lib > mise-completion
+sudo mv mise-completion $completion_target && sudo chown root:root $completion_target
+# Reload shell .rc to pick up completions in current session
+source $shellrc
 
-# Ash-framework toolchain
-misetools="postgres erlang elixir node@lts"
 # Remove any previously installed versions
 mise uninstall $misetools
 # Install tools for ash-framework development in $PWD
