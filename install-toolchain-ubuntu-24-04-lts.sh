@@ -8,7 +8,7 @@ sudo apt install $packages
 
 # Uninstall prior mise installation
 # This will fail for virgin installation!
-mise implode
+mise implode --yes
 
 # Install mise
 gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 0x7413A06D
@@ -17,7 +17,8 @@ curl https://mise.jdx.dev/install.sh.sig | gpg --decrypt > install.sh
 sh ./install.sh
 
 # Activate mise in each terminal session
-echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+mise_activate='eval "$(mise activate bash)"'
+grep "$mise_activate" < ~/.bashrc > /dev/null || printf "\n# Activate mise in each terminal session\n$mise_activate\n" >> ~/.bashrc
 # Activate mise in current session
 source ~/.bashrc
 
