@@ -6,6 +6,10 @@ packages="autoconf bison erlang-odbc erlang-wx flex icu-devtools inotify-tools l
 
 sudo apt install $packages
 
+# Uninstall prior mise installation
+# This will fail for virgin installation!
+mise --implode
+
 # Install mise
 gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 0x7413A06D
 curl https://mise.jdx.dev/install.sh.sig | gpg --decrypt > install.sh
@@ -17,8 +21,22 @@ echo 'eval "$(mise activate bash)"' >> ~/.bashrc
 # Activate mise in current session
 source ~/.bashrc
 
+# Dump mise config and check for problems
+mise doctor
+
+# Add mise auto completion
+mise use -g usage
+# This requires bash-completion to be installed
+mkdir -p /etc/bash_completion.d/
+mise completion bash --include-bash-completion-lib > /etc/bash_completion.d/mise
+source ~/.bashrc
+
+# Ash-framework toolchain
 misetools="postgres erlang elixir node@lts"
 # Remove any previously installed versions
 mise uninstall $misetools
 # Install tools for ash-framework development in $PWD
 mise use $misetools
+
+# Enumerate installed tools
+mise list
