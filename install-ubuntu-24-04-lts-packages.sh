@@ -1,4 +1,4 @@
-#! /user/bin/env bash
+#! /usr/bin/env bash
 
 # To use the devtool manager, mise, (mise-en-scene) to install erlang, elixir, postgresql, install the following packages:
 
