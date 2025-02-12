@@ -6,6 +6,7 @@ mise_activate='eval "$(~/.local/bin/mise activate bash)"'
 misetools="postgres erlang elixir node@lts"
 # To use the devtool manager, mise, (mise-en-scene) to install erlang, elixir, postgresql, install the following packages:
 deb_packages="autoconf bison erlang-odbc erlang-wx flex icu-devtools inotify-tools libicu-dev libncurses-dev libodbc2 libodbccr2 libodbcinst2 libreadline-dev libssl-dev libwxgtk-media3.2-dev  libwxgtk-webview3.2-dev libwxgtk3.2-dev odbcinst odbc-postgresql pkg-config unixodbc unixodbc-common unixodbc-dev"
+global_elixir=/usr/bin/elixir
 
 sudo apt install $deb_packages
 
@@ -33,6 +34,9 @@ mise doctor --yes
 mise uninstall $misetools
 # Install tools for ash-framework development in $PWD
 mise use $misetools
+# Link global elixir path to mise-installed elixir to enable ElixirLS plugin in VS Code
+sudo ln -sf $(which elixir) $global_elixir
+sudo chown root:root $global_elixir
 
 # Enumerate installed tools
 mise list
