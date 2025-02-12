@@ -34,9 +34,6 @@ mise doctor --yes
 mise uninstall $misetools
 # Install tools for ash-framework development in $PWD
 mise use $misetools
-# Link global elixir path to mise-installed elixir to enable ElixirLS plugin in VS Code
-sudo ln -sf $(which elixir) $global_elixir
-sudo chown root:root $global_elixir
 
 # Enumerate installed tools
 mise list
