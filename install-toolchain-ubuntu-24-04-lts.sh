@@ -11,7 +11,7 @@ deb_packages="autoconf bison erlang-odbc erlang-wx flex icu-devtools inotify-too
 sudo apt install $deb_packages
 
 # Uninstall prior mise installation
-which mise && sudo mise implode --config --yes
+which mise && mise implode --config --yes
 # Remove any local ($PWD) mise config
 [ -f mise.toml ] && rm mise.toml
 
