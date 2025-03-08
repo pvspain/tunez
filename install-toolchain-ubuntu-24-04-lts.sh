@@ -2,16 +2,16 @@
 set -ex
 
 shellrc=~/.bashrc
-mise_activate='eval "$(~/.local/bin/mise activate bash)"'
+mise_activate='eval "$(mise activate bash)"'
 # Ash-framework toolchain
 misetools="postgres erlang elixir node@lts"
 # To use the devtool manager, mise, (mise-en-scene) to install erlang, elixir, postgresql, install the following packages:
-deb_packages="autoconf bison erlang-odbc erlang-wx flex icu-devtools inotify-tools libicu-dev libncurses-dev libodbc2 libodbccr2 libodbcinst2 libreadline-dev libssl-dev libwxgtk-media3.2-dev  libwxgtk-webview3.2-dev libwxgtk3.2-dev odbcinst odbc-postgresql pkg-config unixodbc unixodbc-common unixodbc-dev"
+deb_packages="autoconf bison erlang-odbc erlang-wx flex icu-devtools inotify-tools libicu-dev libncurses-dev libodbc2 libodbccr2 libodbcinst2 libreadline-dev libssl-dev libwxgtk-media3.2-dev libwxgtk-webview3.2-dev libwxgtk3.2-dev odbc-postgresql odbcinst pkg-config unixodbc unixodbc-common unixodbc-dev zlib1g zlib1g-dev"
 
 sudo apt install $deb_packages
 
 # Uninstall prior mise installation
-which mise && mise implode --config --yes
+which mise && sudo mise implode --config --yes
 # Remove any local ($PWD) mise config
 [ -f mise.toml ] && rm mise.toml
 
